@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Orders - Sweet Crumbs Bakery</title>
+    <meta name="description" content="Order custom cakes and desserts for special occasions. Sweet Crumbs Bakery creates personalized treats for birthdays, weddings, and celebrations.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* Additional Custom Orders Page Styles */
+        .page-banner {
+            height: 50vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1558028679-d7da8d9334fd') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .custom-order-section {
+            background-color: #fff;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+        
+        .custom-order-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .custom-order-images {
+            position: relative;
+            height: 100%;
+        }
+        
+        .custom-order-image-slider {
+            height: 100%;
+            position: relative;
+        }
+        
+        .custom-order-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            object-fit: cover;
+        }
+        
+        .custom-order-image.active {
+            opacity: 1;
+        }
+        
+        .custom-order-form-container {
+            padding: 3rem;
+        }
+        
+        .form-heading {
+            margin-bottom: 2rem;
+        }
+        
+        .custom-order-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            outline: none;
+            font-family: var(--body-font);
+            background-color: #fff;
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .error-message {
+            font-size: 0.85rem;
+            color: var(--error-color);
+            margin-top: 0.25rem;
+        }
+        
+        .success-message {
+            background-color: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .success-message.fade-out {
+            animation: fadeOut 0.3s ease;
+        }
+        
+        input.error,
+        textarea.error,
+        select.error {
+            border-color: var(--error-color);
+        }
+        
+        .btn-submit {
+            margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .cake-flavors-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .flavor-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .flavor-option input {
+            margin: 0;
+        }
+        
+        .cake-info-section {
+            margin-top: 4rem;
+        }
+        
+        .cake-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .cake-info-card {
+            background-color: #fff;
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+        
+        .cake-info-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .cake-info-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .cake-info-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .faq-section {
+            margin-top: 4rem;
+        }
+        
+        .faq-list {
+            margin-top: 2rem;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            padding: 1rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question i {
+            transition: transform var(--transition-fast);
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 0 1rem;
+            display: none;
+            color: #666;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .custom-order-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .custom-order-images {
+                height: 300px;
+                order: -1;
+            }
+            
+            .cake-info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .form-heading {
+                text-align: center;
+            }
+            
+            .cake-flavors-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cake-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .custom-order-form-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Sweet Crumbs</h1>
+                <p>Bakery</p>
+            </div>
+            <nav class="main-nav">
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="custom-orders.html" class="active">Custom Orders</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Custom Orders</h1>
+            <p>Delicious, Personalized Cakes for Every Occasion</p>
+        </div>
+    </section>
+
+    <!-- Custom Order Form Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Create Your Perfect Cake</h2>
+                <p>Tell us what you're looking for, and we'll craft a delicious creation just for you</p>
+            </div>
+            
+            <div class="custom-order-section">
+                <div class="custom-order-layout">
+                    <!-- Custom Cake Images -->
+                    <div class="custom-order-images">
+                        <div class="custom-order-image-slider">
+                            <img src="https://images.unsplash.com/photo-1693464305114-29dec7f34deb" alt="Birthday Cake" class="custom-order-image active">
+                            <img src="https://images.unsplash.com/photo-1509474520651-53cf6a80536f" alt="Wedding Cake" class="custom-order-image">
+                            <img src="https://images.unsplash.com/photo-1508737523220-e22aa75d0d33" alt="Anniversary Cake" class="custom-order-image">
+                            <img src="https://images.unsplash.com/photo-1542729833-00c7620f6541" alt="Themed Cake" class="custom-order-image">
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Order Form -->
+                    <div class="custom-order-form-container">
+                        <div class="form-heading">
+                            <h3>Custom Order Inquiry</h3>
+                            <p>Please provide details about your order, and we'll get back to you within 24 hours.</p>
+                        </div>
+                        <form id="custom-order-form" class="custom-order-form">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="occasion">Occasion</label>
+                                <select id="occasion" name="occasion">
+                                    <option value="">Select an occasion</option>
+                                    <option value="birthday">Birthday</option>
+                                    <option value="wedding">Wedding</option>
+                                    <option value="anniversary">Anniversary</option>
+                                    <option value="graduation">Graduation</option>
+                                    <option value="baby-shower">Baby Shower</option>
+                                    <option value="corporate">Corporate Event</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cake-size">Approximate Size</label>
+                                <select id="cake-size" name="cake-size">
+                                    <option value="">Select a size</option>
+                                    <option value="6-inch">6" Round (serves 8-10)</option>
+                                    <option value="8-inch">8" Round (serves 12-16)</option>
+                                    <option value="10-inch">10" Round (serves 20-24)</option>
+                                    <option value="quarter-sheet">¼ Sheet (serves 20-25)</option>
+                                    <option value="half-sheet">½ Sheet (serves 40-50)</option>
+                                    <option value="custom">Custom Size</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Preferred Flavors (Select up to 2)</label>
+                                <div class="cake-flavors-container">
+                                    <div class="flavor-option">
+                                        <input type="checkbox" id="flavor-vanilla" name="flavors[]" value="vanilla">
+                                        <label for="flavor-vanilla">Vanilla</label>
+                                    </div>
+                                    <div class="flavor-option">
+                                        <input type="checkbox" id="flavor-chocolate" name="flavors[]" value="chocolate">
+                                        <label for="flavor-chocolate">Chocolate</label>
+                                    </div>
+                                    <div class="flavor-option">
+                                        <input type="checkbox" id="flavor-red-velvet" name="flavors[]" value="red-velvet">
+                                        <label for="flavor-red-velvet">Red Velvet</label>
+                                    </div>
+                                    <div class="flavor-option">
+                                        <input type="checkbox" id="flavor-lemon" name="flavors[]" value="lemon">
+                                        <label for="flavor-lemon">Lemon</label>
+                                    </div>
+                                    <div class="flavor-option">
+                                        <input type="checkbox" id="flavor-carrot" name="flavors[]" value="carrot">
+                                        <label for="flavor-carrot">Carrot</label>
+                                    </div>
+                                    <div class="flavor-option">
+                                        <input type="checkbox" id="flavor-other" name="flavors[]" value="other">
+                                        <label for="flavor-other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="delivery-date">Desired Delivery/Pickup Date *</label>
+                                <input type="date" id="delivery-date" name="delivery-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Budget Range (optional)</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select a range</option>
+                                    <option value="under-50">Under $50</option>
+                                    <option value="50-100">$50 - $100</option>
+                                    <option value="100-200">$100 - $200</option>
+                                    <option value="200-plus">$200+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Description of Your Ideal Cake *</label>
+                                <textarea id="description" name="description" placeholder="Please provide details about design preferences, theme, colors, allergies, or special requirements..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn primary-btn btn-submit">Submit Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cake Information Section -->
+            <div class="cake-info-section">
+                <div class="section-header">
+                    <h2>Our Custom Cake Process</h2>
+                    <p>How we bring your cake vision to life</p>
+                </div>
+                
+                <div class="cake-info-grid">
+                    <div class="cake-info-card">
+                        <div class="cake-info-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>1. Consultation</h3>
+                        <p>We'll discuss your vision, requirements, and preferences for your custom cake.</p>
+                    </div>
+                    
+                    <div class="cake-info-card">
+                        <div class="cake-info-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>2. Design</h3>
+                        <p>Our cake artists will create a design concept based on your ideas and specifications.</p>
+                    </div>
+                    
+                    <div class="cake-info-card">
+                        <div class="cake-info-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <h3>3. Creation</h3>
+                        <p>We bake and decorate your cake with the utmost attention to detail and quality.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Common questions about our custom cake services</p>
+                </div>
+                
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How far in advance should I order my custom cake?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We recommend placing your order at least 1-2 weeks in advance for standard custom cakes. For wedding cakes or more elaborate designs, 4-6 weeks notice is preferred. During peak seasons (holidays, graduation season, etc.), more advance notice may be required.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you accommodate dietary restrictions?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we can create cakes to accommodate various dietary needs, including gluten-free, nut-free, and vegan options. Please be sure to mention any allergies or dietary restrictions when placing your order so we can discuss available options.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How is pricing determined for custom cakes?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Custom cake pricing depends on several factors, including size, design complexity, flavors, fillings, and decorative elements. After your consultation, we'll provide a detailed quote based on your specific requirements. Basic custom cakes start at $60, while more elaborate designs with fondant work or special techniques will be priced accordingly.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you deliver custom cake orders?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer delivery service within a 20-mile radius of our bakery for a fee based on distance. Delivery is strongly recommended for tiered cakes and delicate designs. You're also welcome to pick up your cake at our bakery during business hours.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I provide a picture of a cake I want you to recreate?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! Visual references are very helpful. While we may not be able to create an exact replica (particularly of trademarked characters or designs), we can use your images as inspiration to create something similar that matches your vision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Sweet Crumbs</h2>
+                    <p>Bakery</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="menu.html">Menu</a></li>
+                            <li><a href="custom-orders.html">Custom Orders</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Your City, State 12345</p>
+                        <p><i class="fas fa-phone-alt"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> hello@sweetcrumbs.com</p>
+                    </div>
+                    <div class="footer-hours">
+                        <h3>Hours</h3>
+                        <p><span>Monday - Friday:</span> 7am - 6pm</p>
+                        <p><span>Saturday:</span> 8am - 5pm</p>
+                        <p><span>Sunday:</span> 8am - 3pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="copyright">&copy; 2023 Sweet Crumbs Bakery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/form-validation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image slider for custom cakes
+            const images = document.querySelectorAll('.custom-order-image');
+            let currentImageIndex = 0;
+            
+            function showNextImage() {
+                // Hide current image
+                images[currentImageIndex].classList.remove('active');
+                
+                // Update index
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                
+                // Show next image
+                images[currentImageIndex].classList.add('active');
+            }
+            
+            // Change image every 3 seconds
+            setInterval(showNextImage, 3000);
+            
+            // FAQ toggle functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    // Toggle active state
+                    this.classList.toggle('active');
+                    
+                    // Get the answer element
+                    const answer = this.nextElementSibling;
+                    
+                    // Toggle show class
+                    answer.classList.toggle('show');
+                    
+                    // Close other open FAQs
+                    faqQuestions.forEach(q => {
+                        if (q !== this && q.classList.contains('active')) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.classList.remove('show');
+                        }
+                    });
+                });
+            });
+            
+            // Limit checkbox selection to 2 for flavors
+            const flavorCheckboxes = document.querySelectorAll('input[name="flavors[]"]');
+            
+            flavorCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Count checked checkboxes
+                    const checkedCount = document.querySelectorAll('input[name="flavors[]"]:checked').length;
+                    
+                    // If more than 2 are checked, uncheck the current one
+                    if (checkedCount > 2) {
+                        this.checked = false;
+                        alert('You can select up to 2 flavors. Please uncheck a flavor before selecting another.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

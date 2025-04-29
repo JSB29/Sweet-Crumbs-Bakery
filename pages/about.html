@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Sweet Crumbs Bakery</title>
+    <meta name="description" content="Learn about Sweet Crumbs Bakery, a family-owned bakery established in 2017, known for freshly baked breads, cakes, and pastries made with quality ingredients.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* Additional About Page Styles */
+        .page-banner {
+            height: 50vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1641476609263-2b432f0f6850') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .story-section {
+            background-color: white;
+            padding: 4rem 0;
+        }
+        
+        .story-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .story-image {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            height: 100%;
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .story-content h2 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .story-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .story-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .values-section {
+            background-color: var(--background-color);
+            padding: 4rem 0;
+        }
+        
+        .values-container {
+            margin-top: 3rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            text-align: center;
+            transition: transform var(--transition-normal);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .team-section {
+            background-color: white;
+            padding: 4rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-normal);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .team-photo {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+        
+        .team-member:hover .team-photo img {
+            transform: scale(1.05);
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .team-info .position {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+        
+        .team-info p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .testimonial-section {
+            background-color: var(--background-color);
+            padding: 4rem 0;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .story-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .story-image {
+                order: -1;
+                height: 400px;
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Sweet Crumbs</h1>
+                <p>Bakery</p>
+            </div>
+            <nav class="main-nav">
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="custom-orders.html">Custom Orders</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Our Story</h1>
+            <p>The Family Behind Sweet Crumbs Bakery</p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-container">
+                <div class="story-content">
+                    <h2>The Sweet Crumbs Journey</h2>
+                    <p>Sweet Crumbs Bakery was born in 2017 from a passion for creating delicious, handcrafted baked goods that bring joy to our community. What started as weekend farmers market stand quickly grew into the beloved neighborhood bakery you see today.</p>
+                    <p>Founded by Maria and James Thompson, Sweet Crumbs combines Maria's culinary training in traditional European baking techniques with James' background in business and customer service. Together, they've created a warm, welcoming bakery where quality and taste are never compromised.</p>
+                    <p>Our recipes have been perfected over years, some passed down through generations of Maria's family, others developed through creative experimentation in our kitchen. We source local, seasonal ingredients whenever possible, supporting our community's farmers and producers.</p>
+                    <p>Today, Sweet Crumbs is proud to be a gathering place where neighbors connect over coffee and freshly baked pastries, where families order special occasion cakes, and where the aroma of fresh bread draws in passersby every morning.</p>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1635907487589-4b8b2a63f704" alt="Baker working in Sweet Crumbs Bakery" class="fade-in">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do at Sweet Crumbs Bakery</p>
+            </div>
+            
+            <div class="values-container">
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-wheat-awn"></i>
+                        </div>
+                        <h3>Quality Ingredients</h3>
+                        <p>We carefully select premium, fresh ingredients for all our baked goods. We believe that exceptional quality starts with exceptional ingredients, which is why we source locally whenever possible.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hands"></i>
+                        </div>
+                        <h3>Handcrafted Care</h3>
+                        <p>Each item is made by hand with attention to detail and craftsmanship. We take pride in the art of baking, following traditional methods that simply can't be replicated by mass production.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Community Connection</h3>
+                        <p>We're deeply rooted in our community and strive to create a warm, welcoming environment where people can gather, connect, and share life's sweetest moments together.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Sustainability</h3>
+                        <p>We're committed to environmentally friendly practices, from reducing food waste to using biodegradable packaging whenever possible. We believe in treating our planet with the same care as our recipes.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>While we honor traditional baking methods, we also embrace creativity and innovation. We're constantly exploring new flavors, techniques, and ideas to surprise and delight our customers.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3>Customer Happiness</h3>
+                        <p>Your satisfaction is our ultimate goal. We believe in creating not just delicious baked goods, but memorable experiences that bring joy and sweetness to your day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The talented people behind Sweet Crumbs Bakery</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="../images/bakery-counter-display.webp" alt="Head Baker at Sweet Crumbs Bakery">
+                    </div>
+                    <div class="team-info">
+                        <h3>Maria Thompson</h3>
+                        <p class="position">Head Baker & Founder</p>
+                        <p>With over 15 years of baking experience, Maria brings traditional European techniques and innovative flavor combinations to every recipe she creates.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="../images/bakery-cake.svg" alt="Co-founder of Sweet Crumbs Bakery">
+                    </div>
+                    <div class="team-info">
+                        <h3>James Thompson</h3>
+                        <p class="position">Co-Founder & Operations</p>
+                        <p>James manages the day-to-day operations, ensuring everything runs smoothly so our team can focus on creating delicious baked goods.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1693464305114-29dec7f34deb" alt="Pastry Chef at Sweet Crumbs Bakery">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sophie Chen</h3>
+                        <p class="position">Pastry Chef</p>
+                        <p>A graduate of Le Cordon Bleu, Sophie specializes in creating our exquisite pastries and custom cakes with her artistic touch and technical precision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section (Reused from homepage but with more testimonials) -->
+    <section class="testimonials section testimonial-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>The Sweet Crumbs experience in their words</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-wrapper">
+                    <div class="testimonial-item active">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"The chocolate croissants are simply divine! I've tried pastries all over the city, and Sweet Crumbs makes the most buttery, flaky ones by far. Their coffee is also excellent."</p>
+                        <div class="testimonial-author">
+                            <p class="author-name">Sarah Johnson</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"I ordered a custom birthday cake for my daughter, and it exceeded all expectations! Not only was it gorgeous, but it tasted amazing too. The team was so helpful with the design process."</p>
+                        <div class="testimonial-author">
+                            <p class="author-name">Michael Peters</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"Their sourdough bread is the best I've ever had. The crust is perfect, and the flavor is incredible. I'm a regular customer now and can't imagine getting bread anywhere else!"</p>
+                        <div class="testimonial-author">
+                            <p class="author-name">Emma Rodriguez</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"Sweet Crumbs has become a Saturday morning tradition for our family. The kids love watching the bakers work through the window, and we all have our favorites - mine is the almond croissant!"</p>
+                        <div class="testimonial-author">
+                            <p class="author-name">David Winters</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"As someone with celiac disease, finding good gluten-free options is always a challenge. Sweet Crumbs' GF chocolate cake is incredible - you would never know it's gluten-free! Thank you for making such inclusive treats."</p>
+                        <div class="testimonial-author">
+                            <p class="author-name">Lucia Martinez</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                        <span class="dot" data-index="4"></span>
+                    </div>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section" style="text-align: center; padding: 4rem 0; background-color: white;">
+        <div class="container">
+            <h2>Come Visit Us Today</h2>
+            <p style="max-width: 600px; margin: 1rem auto 2rem;">We'd love to welcome you to our bakery. Stop by for a freshly baked treat and a warm smile!</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="menu.html" class="btn primary-btn">View Our Menu</a>
+                <a href="contact.html" class="btn secondary-btn">Find Our Location</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Sweet Crumbs</h2>
+                    <p>Bakery</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="menu.html">Menu</a></li>
+                            <li><a href="custom-orders.html">Custom Orders</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Your City, State 12345</p>
+                        <p><i class="fas fa-phone-alt"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> hello@sweetcrumbs.com</p>
+                    </div>
+                    <div class="footer-hours">
+                        <h3>Hours</h3>
+                        <p><span>Monday - Friday:</span> 7am - 6pm</p>
+                        <p><span>Saturday:</span> 8am - 5pm</p>
+                        <p><span>Sunday:</span> 8am - 3pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="copyright">&copy; 2023 Sweet Crumbs Bakery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/slider.js"></script>
+</body>
+</html>

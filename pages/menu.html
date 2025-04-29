@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Sweet Crumbs Bakery</title>
+    <meta name="description" content="Explore our menu of freshly baked goods including breads, pastries, cakes, and seasonal specialties at Sweet Crumbs Bakery.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        /* Additional Menu Page Styles */
+        .page-banner {
+            height: 50vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .menu-tab {
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .menu-tab.active, .menu-tab:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .menu-category {
+            margin-bottom: 4rem;
+        }
+        
+        .menu-category h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-normal);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .menu-item-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+        
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.05);
+        }
+        
+        .menu-item-info {
+            padding: 1.5rem;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-item-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        .menu-item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .menu-item-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .menu-item-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .menu-item-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #f0f0f0;
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .seasonal-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .menu-item-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Sweet Crumbs</h1>
+                <p>Bakery</p>
+            </div>
+            <nav class="main-nav">
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="menu.html" class="active">Menu</a></li>
+                    <li><a href="custom-orders.html">Custom Orders</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-content">
+            <h1>Our Menu</h1>
+            <p>Freshly Baked Goods Made Daily</p>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Handcrafted with Love</h2>
+                <p>Browse our selection of freshly baked goods, made from scratch using quality ingredients</p>
+            </div>
+            
+            <!-- Menu Filter Tabs -->
+            <div class="menu-tabs">
+                <div class="menu-tab active" data-filter="all">All Items</div>
+                <div class="menu-tab" data-filter="breads">Breads</div>
+                <div class="menu-tab" data-filter="pastries">Pastries</div>
+                <div class="menu-tab" data-filter="cakes">Cakes</div>
+                <div class="menu-tab" data-filter="seasonal">Seasonal</div>
+            </div>
+            
+            <!-- Breads Category -->
+            <div class="menu-category" id="breads">
+                <h2>Artisan Breads</h2>
+                <div class="menu-grid">
+                    <!-- Bread Item 1 -->
+                    <div class="menu-item" data-category="breads">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1566698629409-787a68fc5724" alt="Sourdough Bread">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Sourdough Loaf</h3>
+                                <span class="menu-item-price">$6.50</span>
+                            </div>
+                            <p class="menu-item-description">Our signature sourdough with a crispy crust and tender crumb, fermented for 24 hours for maximum flavor.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegan</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bread Item 2 -->
+                    <div class="menu-item" data-category="breads">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1594403758808-58d9e13cff40" alt="Multigrain Bread">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Multigrain Loaf</h3>
+                                <span class="menu-item-price">$7.00</span>
+                            </div>
+                            <p class="menu-item-description">Packed with seeds and whole grains for a nutritious and hearty bread that's perfect for toast or sandwiches.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegan</span>
+                                <span class="menu-item-tag">Whole Grain</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bread Item 3 -->
+                    <div class="menu-item" data-category="breads">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1624323209995-b617d99ce390" alt="Baguette">
+                            <div class="seasonal-badge">Popular</div>
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">French Baguette</h3>
+                                <span class="menu-item-price">$4.50</span>
+                            </div>
+                            <p class="menu-item-description">Traditional French baguette with a crackly crust and light, airy interior. Baked fresh throughout the day.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegan</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bread Item 4 -->
+                    <div class="menu-item" data-category="breads">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff" alt="Ciabatta Bread">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Ciabatta</h3>
+                                <span class="menu-item-price">$5.00</span>
+                            </div>
+                            <p class="menu-item-description">Italian-style ciabatta with a rustic, open crumb and flour-dusted crust. Perfect for dipping in olive oil.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pastries Category -->
+            <div class="menu-category" id="pastries">
+                <h2>Fresh Pastries</h2>
+                <div class="menu-grid">
+                    <!-- Pastry Item 1 -->
+                    <div class="menu-item" data-category="pastries">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0" alt="Chocolate Croissant">
+                            <div class="seasonal-badge">Best Seller</div>
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Pain au Chocolat</h3>
+                                <span class="menu-item-price">$4.25</span>
+                            </div>
+                            <p class="menu-item-description">Flaky, buttery croissant dough filled with premium dark chocolate for the perfect sweet treat.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pastry Item 2 -->
+                    <div class="menu-item" data-category="pastries">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1458712197423-adcdc2a426ee" alt="Fruit Tart">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Fresh Fruit Tart</h3>
+                                <span class="menu-item-price">$5.75</span>
+                            </div>
+                            <p class="menu-item-description">Buttery tart shell filled with vanilla custard and topped with seasonal fresh fruits and a light glaze.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pastry Item 3 -->
+                    <div class="menu-item" data-category="pastries">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1523294587484-bae6cc870010" alt="Cinnamon Roll">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Cinnamon Roll</h3>
+                                <span class="menu-item-price">$4.50</span>
+                            </div>
+                            <p class="menu-item-description">Soft, fluffy roll swirled with cinnamon sugar and topped with cream cheese frosting.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pastry Item 4 -->
+                    <div class="menu-item" data-category="pastries seasonal">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Fruit Danish">
+                            <div class="seasonal-badge">Seasonal</div>
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Berry Danish</h3>
+                                <span class="menu-item-price">$4.75</span>
+                            </div>
+                            <p class="menu-item-description">Flaky danish pastry filled with sweet cream cheese and seasonal berries.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                                <span class="menu-item-tag">Seasonal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pastry Item 5 -->
+                    <div class="menu-item" data-category="pastries">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194" alt="Almond Croissant">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Almond Croissant</h3>
+                                <span class="menu-item-price">$4.50</span>
+                            </div>
+                            <p class="menu-item-description">Buttery croissant filled with almond cream, topped with sliced almonds and dusted with powdered sugar.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                                <span class="menu-item-tag">Contains Nuts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cakes Category -->
+            <div class="menu-category" id="cakes">
+                <h2>Cakes & Sweet Treats</h2>
+                <div class="menu-grid">
+                    <!-- Cake Item 1 -->
+                    <div class="menu-item" data-category="cakes">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1558028679-d7da8d9334fd" alt="Chocolate Cake">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Chocolate Ganache Cake</h3>
+                                <span class="menu-item-price">$5.75 / slice</span>
+                            </div>
+                            <p class="menu-item-description">Rich chocolate cake layers filled and covered with dark chocolate ganache. A chocolate lover's dream!</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cake Item 2 -->
+                    <div class="menu-item" data-category="cakes">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1509474520651-53cf6a80536f" alt="Vanilla Cake">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Vanilla Bean Cake</h3>
+                                <span class="menu-item-price">$5.50 / slice</span>
+                            </div>
+                            <p class="menu-item-description">Moist vanilla cake with flecks of real vanilla bean, layered with vanilla buttercream frosting.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cake Item 3 -->
+                    <div class="menu-item" data-category="cakes seasonal">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1542729833-00c7620f6541" alt="Carrot Cake">
+                            <div class="seasonal-badge">Seasonal</div>
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Carrot Cake</h3>
+                                <span class="menu-item-price">$5.75 / slice</span>
+                            </div>
+                            <p class="menu-item-description">Spiced carrot cake with walnuts and cream cheese frosting. A perfect autumn treat!</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                                <span class="menu-item-tag">Contains Nuts</span>
+                                <span class="menu-item-tag">Seasonal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cake Item 4 -->
+                    <div class="menu-item" data-category="cakes">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1542745979-770f28b4aba5" alt="Cheesecake">
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">New York Cheesecake</h3>
+                                <span class="menu-item-price">$6.00 / slice</span>
+                            </div>
+                            <p class="menu-item-description">Creamy, smooth cheesecake with a graham cracker crust, served with berry compote.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cake Item 5 -->
+                    <div class="menu-item" data-category="cakes">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1508737523220-e22aa75d0d33" alt="Red Velvet Cake">
+                            <div class="seasonal-badge">Featured</div>
+                        </div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h3 class="menu-item-name">Red Velvet Cake</h3>
+                                <span class="menu-item-price">$5.75 / slice</span>
+                            </div>
+                            <p class="menu-item-description">Classic red velvet cake with a hint of cocoa, topped with cream cheese frosting.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-item-tag">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Custom Order Notice -->
+            <div class="custom-order-notice text-center" style="margin-top: 3rem;">
+                <h3>Looking for something special?</h3>
+                <p>We create custom cakes and desserts for all occasions. Contact us to discuss your specific needs!</p>
+                <a href="custom-orders.html" class="btn primary-btn" style="margin-top: 1rem;">Request Custom Order</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Sweet Crumbs</h2>
+                    <p>Bakery</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="menu.html">Menu</a></li>
+                            <li><a href="custom-orders.html">Custom Orders</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h3>Contact Us</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Your City, State 12345</p>
+                        <p><i class="fas fa-phone-alt"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> hello@sweetcrumbs.com</p>
+                    </div>
+                    <div class="footer-hours">
+                        <h3>Hours</h3>
+                        <p><span>Monday - Friday:</span> 7am - 6pm</p>
+                        <p><span>Saturday:</span> 8am - 5pm</p>
+                        <p><span>Sunday:</span> 8am - 3pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p class="copyright">&copy; 2023 Sweet Crumbs Bakery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu filtering functionality
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    menuTabs.forEach(tab => tab.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter menu items
+                    menuItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category').includes(filterValue)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scroll to section when clicking on menu item
+            const menuLinks = document.querySelectorAll('a[href^="#"]');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = 70; // Adjust based on your header height
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

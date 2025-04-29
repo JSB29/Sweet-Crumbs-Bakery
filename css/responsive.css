@@ -1,0 +1,272 @@
+/* Responsive Styles */
+
+/* Tablets and smaller desktops */
+@media screen and (max-width: 992px) {
+    /* Base styles adjustments */
+    :root {
+        --section-padding: 4rem 0;
+    }
+    
+    body {
+        font-size: 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    /* Header */
+    .header .container {
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: 70vh;
+    }
+    
+    .hero h2 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+    
+    /* Welcome Section */
+    .welcome-content {
+        gap: 2rem;
+    }
+    
+    /* Featured Products */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* Testimonials */
+    .testimonial-text {
+        font-size: 1.1rem;
+    }
+    
+    /* Quick Info */
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 768px) {
+    /* Base styles adjustments */
+    :root {
+        --section-padding: 3.5rem 0;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .section-header {
+        margin-bottom: 2rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    /* Header & Navigation */
+    .menu-toggle {
+        display: flex;
+        z-index: 1010;
+    }
+    
+    .main-nav .nav-list {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: right var(--transition-normal);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1005;
+    }
+    
+    .main-nav .nav-list.active {
+        right: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: 60vh;
+        min-height: 500px;
+    }
+    
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    /* Welcome Section */
+    .welcome-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-image {
+        order: -1;
+    }
+    
+    /* Featured Products */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Quick Info */
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Newsletter */
+    .form-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .form-group input, 
+    .newsletter-form button {
+        width: 100%;
+        border-radius: var(--border-radius-md);
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 3rem 0 1.5rem;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 576px) {
+    /* Base styles adjustments */
+    :root {
+        --section-padding: 3rem 0;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Header */
+    .header .container {
+        padding: 0.7rem 1rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+        min-height: 450px;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    /* Testimonials */
+    .testimonial-wrapper {
+        height: 350px;
+    }
+    
+    .testimonial-item {
+        padding: 1.5rem 1rem;
+    }
+    
+    .testimonial-text {
+        font-size: 1rem;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+    }
+    
+    .main-nav .nav-list {
+        padding: 2rem;
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+}
+
+/* High Resolution Screens */
+@media screen and (min-width: 1400px) {
+    :root {
+        --container-width: 1320px;
+    }
+    
+    body {
+        font-size: 17px;
+    }
+    
+    .section-header h2 {
+        font-size: 2.8rem;
+    }
+}
